@@ -19,4 +19,9 @@
     <ProjectReference Include="..\MiniHRM.Infrastructure\MiniHRM.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+    <Folder Include="Middleware\" />
+  </ItemGroup>
+
 </Project>

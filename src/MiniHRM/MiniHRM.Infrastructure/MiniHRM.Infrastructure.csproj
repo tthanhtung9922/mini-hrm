@@ -19,4 +19,10 @@
     <ProjectReference Include="..\MiniHRM.Domain\MiniHRM.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Configurations\" />
+    <Folder Include="Repositories\" />
+    <Folder Include="Persistence\" />
+  </ItemGroup>
+
 </Project>
