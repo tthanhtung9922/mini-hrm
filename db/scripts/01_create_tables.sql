@@ -146,10 +146,9 @@ GO
 PRINT '========================================';
 PRINT 'MiniHRM schema setup completed successfully.';
 PRINT '========================================';
-```
+GO
 
----
-
+/*
 ## Chạy script trên SQL Server
 
 Mở **SQL Server Management Studio (SSMS)** hoặc dùng thẳng VS 2026:
@@ -169,3 +168,4 @@ All indexes created.
 ========================================
 MiniHRM schema setup completed successfully.
 ========================================
+*/

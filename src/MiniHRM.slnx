@@ -1,6 +1,0 @@
-<Solution>
-  <Project Path="MiniHRM.API/MiniHRM.API.csproj" />
-  <Project Path="MiniHRM.Application/MiniHRM.Application.csproj" />
-  <Project Path="MiniHRM.Domain/MiniHRM.Domain.csproj" />
-  <Project Path="MiniHRM.Infrastructure/MiniHRM.Infrastructure.csproj" />
-</Solution>
