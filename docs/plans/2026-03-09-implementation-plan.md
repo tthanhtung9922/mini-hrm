@@ -101,7 +101,7 @@
 3. ✅ API packages added
 4. ✅ Test packages added
 5. ✅ Solution builds successfully
-6. ⬜ Commit pending
+6. ✅ Committed & pushed (`d9d05c1 chore: install NuGet packages for all layers`)
 
 ---
 
