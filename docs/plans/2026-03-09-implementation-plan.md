@@ -119,7 +119,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 
-COPY MiniHRM.sln .
+COPY MiniHRM.slnx .
 COPY src/MiniHRM.Domain/MiniHRM.Domain.csproj src/MiniHRM.Domain/
 COPY src/MiniHRM.Application/MiniHRM.Application.csproj src/MiniHRM.Application/
 COPY src/MiniHRM.Infrastructure/MiniHRM.Infrastructure.csproj src/MiniHRM.Infrastructure/

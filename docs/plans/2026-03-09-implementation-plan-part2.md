@@ -333,7 +333,6 @@ public interface IMapFrom<T>
 // src/MiniHRM.Application/Common/Mappings/MapsterConfig.cs
 using System.Reflection;
 using Mapster;
-using MapsterMapper;
 
 namespace MiniHRM.Application.Common.Mappings;
 
@@ -450,7 +449,6 @@ git commit -m "feat(app): add IApplicationDbContext interface and register in DI
 using System.Reflection;
 using FluentValidation;
 using Mapster;
-using MapsterMapper;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using MiniHRM.Application.Common.Behaviors;
@@ -2813,7 +2811,7 @@ jobs:
         run: dotnet restore MiniHRM.sln
 
       - name: Build solution
-        run: dotnet build MiniHRM.sln --no-restore --configuration Release
+        run: dotnet build MiniHRM.slnx --no-restore --configuration Release
 
       - name: Run Domain unit tests
         run: dotnet test tests/MiniHRM.Domain.Tests --no-build --configuration Release --logger "trx;LogFileName=domain-tests.trx"
@@ -2899,7 +2897,7 @@ git commit -m "feat(domain): add UserId to Employee for identity linkage + migra
 ### Run full test suite
 
 ```bash
-dotnet test MiniHRM.sln -v n
+dotnet test MiniHRM.slnx -v n
 ```
 
 Expected output: All tests PASS.
