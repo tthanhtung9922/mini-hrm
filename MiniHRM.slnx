@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/MiniHRM.API/MiniHRM.API.csproj" />
+    <Project Path="src/MiniHRM.Application/MiniHRM.Application.csproj" />
+    <Project Path="src/MiniHRM.Domain/MiniHRM.Domain.csproj" />
+    <Project Path="src/MiniHRM.Infrastructure/MiniHRM.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/MiniHRM.API.Tests/MiniHRM.API.Tests.csproj" />
+    <Project Path="tests/MiniHRM.Application.Tests/MiniHRM.Application.Tests.csproj" />
+    <Project Path="tests/MiniHRM.Domain.Tests/MiniHRM.Domain.Tests.csproj" />
+  </Folder>
+</Solution>

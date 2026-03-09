@@ -180,6 +180,9 @@ $RECYCLE.BIN/
 # Claude Code internal
 .claude/
 
+# Obsidian
+.obsidian/
+
 # SonarQube
 .sonarqube/
 .sonar/
