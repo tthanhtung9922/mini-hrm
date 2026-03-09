@@ -91,6 +91,7 @@
 - ~~`Microsoft.AspNetCore.Diagnostics.HealthChecks`~~ *(removed — deprecated legacy package; `AddHealthChecks()` / `MapHealthChecks()` are built into `Microsoft.AspNetCore.App` since .NET 6)*
 
 **Test packages installed:**
+- All test projects: ~~`xunit` 2.9.x~~ → `xunit.v3` 3.2.2 *(xunit v2 is legacy/deprecated; v3 is the current release)*
 - Domain.Tests: `FluentAssertions`
 - Application.Tests: `FluentAssertions`, `NSubstitute`, `Bogus`
 - API.Tests: `FluentAssertions`, `Microsoft.AspNetCore.Mvc.Testing`, `Testcontainers.MsSql`, `Bogus`

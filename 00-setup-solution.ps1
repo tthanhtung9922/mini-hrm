@@ -216,6 +216,19 @@ foreach ($pkg in $apiPkg) {
     Invoke-Cmd "API: $pkg" { dotnet add "src/$Solution.API/$Solution.API.csproj" package $pkg }
 }
 
+# Upgrade xunit v2 (added by template) to xunit.v3 in all test projects
+$testProjects = @(
+    "tests/$Solution.Domain.Tests/$Solution.Domain.Tests.csproj",
+    "tests/$Solution.Application.Tests/$Solution.Application.Tests.csproj",
+    "tests/$Solution.API.Tests/$Solution.API.Tests.csproj"
+)
+foreach ($tp in $testProjects) {
+    Invoke-Cmd "Upgrade xunit → xunit.v3 in $tp" {
+        dotnet remove $tp package xunit
+        dotnet add    $tp package xunit.v3
+    }
+}
+
 # Domain.Tests
 $domainTestPkg = @("FluentAssertions")
 foreach ($pkg in $domainTestPkg) {
