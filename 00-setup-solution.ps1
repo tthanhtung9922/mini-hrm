@@ -68,28 +68,28 @@ Write-Log "INFO" "PowerShell: $($PSVersionTable.PSVersion)"
 Write-Log "INFO" "Working dir: $(Get-Location)"
 Write-Host ""
 
-# ── [1/6] Create solution ─────────────────────
-Write-Step "[1/6] Creating solution..."
+# ── [1/7] Create solution ─────────────────────
+Write-Step "[1/7] Creating solution..."
 Invoke-Cmd "Create solution" { dotnet new sln -n $Solution }
 Write-Host ""
 
-# ── [2/6] Source projects ─────────────────────
-Write-Step "[2/6] Creating source projects..."
+# ── [2/7] Source projects ─────────────────────
+Write-Step "[2/7] Creating source projects..."
 Invoke-Cmd "Domain"         { dotnet new classlib -n "$Solution.Domain"         -o "src/$Solution.Domain"         --framework $Framework }
 Invoke-Cmd "Application"    { dotnet new classlib -n "$Solution.Application"    -o "src/$Solution.Application"    --framework $Framework }
 Invoke-Cmd "Infrastructure" { dotnet new classlib -n "$Solution.Infrastructure" -o "src/$Solution.Infrastructure" --framework $Framework }
 Invoke-Cmd "API"            { dotnet new webapi   -n "$Solution.API"            -o "src/$Solution.API"            --framework $Framework --use-controllers }
 Write-Host ""
 
-# ── [3/6] Test projects ───────────────────────
-Write-Step "[3/6] Creating test projects..."
+# ── [3/7] Test projects ───────────────────────
+Write-Step "[3/7] Creating test projects..."
 Invoke-Cmd "Domain.Tests"       { dotnet new xunit -n "$Solution.Domain.Tests"       -o "tests/$Solution.Domain.Tests"       --framework $Framework }
 Invoke-Cmd "Application.Tests"  { dotnet new xunit -n "$Solution.Application.Tests"  -o "tests/$Solution.Application.Tests"  --framework $Framework }
 Invoke-Cmd "API.Tests"          { dotnet new xunit -n "$Solution.API.Tests"          -o "tests/$Solution.API.Tests"          --framework $Framework }
 Write-Host ""
 
-# ── [4/6] Add projects to solution ───────────
-Write-Step "[4/6] Adding projects to solution..."
+# ── [4/7] Add projects to solution ───────────
+Write-Step "[4/7] Adding projects to solution..."
 $projects = @(
     "src/$Solution.Domain/$Solution.Domain.csproj",
     "src/$Solution.Application/$Solution.Application.csproj",
@@ -104,8 +104,8 @@ foreach ($proj in $projects) {
 }
 Write-Host ""
 
-# ── [5/6] Project references ──────────────────
-Write-Step "[5/6] Setting up project references..."
+# ── [5/7] Project references ──────────────────
+Write-Step "[5/7] Setting up project references..."
 
 Invoke-Cmd "Application -> Domain" {
     dotnet add "src/$Solution.Application/$Solution.Application.csproj" reference "src/$Solution.Domain/$Solution.Domain.csproj"
@@ -142,8 +142,8 @@ Invoke-Cmd "API.Tests -> Application" {
 }
 Write-Host ""
 
-# ── [6/6] Remove default generated files ─────
-Write-Step "[6/6] Removing default generated files..."
+# ── [6/7] Remove default generated files ─────
+Write-Step "[6/7] Removing default generated files..."
 
 $filesToDelete = @(
     "src/$Solution.Domain/Class1.cs",
@@ -163,6 +163,81 @@ foreach ($file in $filesToDelete) {
     } else {
         Write-Warn "  >> Skipped (not found): $file"
     }
+}
+Write-Host ""
+
+# ── [7/7] Install NuGet packages ─────────────
+Write-Step "[7/7] Installing NuGet packages..."
+
+# Domain: intentionally no packages (zero dependencies)
+Write-Info "  >> Domain: no packages (pure domain model)"
+
+# Application
+$appPkg = @(
+    "MediatR",
+    "FluentValidation",
+    "FluentValidation.DependencyInjectionExtensions",
+    "Mapster",
+    "Mapster.DependencyInjection",
+    "Microsoft.Extensions.Logging.Abstractions"
+)
+foreach ($pkg in $appPkg) {
+    Invoke-Cmd "Application: $pkg" { dotnet add "src/$Solution.Application/$Solution.Application.csproj" package $pkg }
+}
+
+# Infrastructure
+$infraPkg = @(
+    "Microsoft.EntityFrameworkCore",
+    "Microsoft.EntityFrameworkCore.SqlServer",
+    "Microsoft.EntityFrameworkCore.Tools",
+    "Microsoft.AspNetCore.Identity.EntityFrameworkCore",
+    "Microsoft.AspNetCore.Authentication.JwtBearer",
+    "Microsoft.Extensions.Configuration.Abstractions"
+)
+foreach ($pkg in $infraPkg) {
+    Invoke-Cmd "Infrastructure: $pkg" { dotnet add "src/$Solution.Infrastructure/$Solution.Infrastructure.csproj" package $pkg }
+}
+
+# API
+$apiPkg = @(
+    "Serilog.AspNetCore",
+    "Serilog.Sinks.Console",
+    "Serilog.Sinks.File",
+    "Serilog.Sinks.Seq",
+    "Serilog.Enrichers.Environment",
+    "Serilog.Enrichers.Process",
+    "Serilog.Enrichers.Thread",
+    "Asp.Versioning.Mvc",
+    "Asp.Versioning.Mvc.ApiExplorer",
+    "Swashbuckle.AspNetCore",
+    "Microsoft.AspNetCore.Diagnostics.HealthChecks",
+    "AspNetCore.HealthChecks.SqlServer"
+)
+foreach ($pkg in $apiPkg) {
+    Invoke-Cmd "API: $pkg" { dotnet add "src/$Solution.API/$Solution.API.csproj" package $pkg }
+}
+
+# Domain.Tests
+$domainTestPkg = @("FluentAssertions")
+foreach ($pkg in $domainTestPkg) {
+    Invoke-Cmd "Domain.Tests: $pkg" { dotnet add "tests/$Solution.Domain.Tests/$Solution.Domain.Tests.csproj" package $pkg }
+}
+
+# Application.Tests
+$appTestPkg = @("FluentAssertions", "NSubstitute", "Bogus")
+foreach ($pkg in $appTestPkg) {
+    Invoke-Cmd "Application.Tests: $pkg" { dotnet add "tests/$Solution.Application.Tests/$Solution.Application.Tests.csproj" package $pkg }
+}
+
+# API.Tests (integration)
+$apiTestPkg = @(
+    "FluentAssertions",
+    "Microsoft.AspNetCore.Mvc.Testing",
+    "Testcontainers.MsSql",
+    "Bogus"
+)
+foreach ($pkg in $apiTestPkg) {
+    Invoke-Cmd "API.Tests: $pkg" { dotnet add "tests/$Solution.API.Tests/$Solution.API.Tests.csproj" package $pkg }
 }
 Write-Host ""
 
