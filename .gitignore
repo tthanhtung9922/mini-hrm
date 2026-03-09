@@ -1,0 +1,190 @@
+## -----------------------------------------------------------------------
+## .NET / C#
+## -----------------------------------------------------------------------
+
+# Build outputs
+[Dd]ebug/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# NuGet
+*.nupkg
+*.snupkg
+**/[Pp]ackages/
+!**/[Pp]ackages/build/
+*.nuget.props
+*.nuget.targets
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# .NET CLI tools
+.dotnet/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+## -----------------------------------------------------------------------
+## Visual Studio
+## -----------------------------------------------------------------------
+
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.userprefs
+[Ee]xpress/
+DocProject/buildhelp/
+DocProject/Help/*.HxT
+DocProject/Help/*.HxC
+DocProject/Help/*.hhc
+DocProject/Help/*.hhk
+DocProject/Help/*.hhp
+DocProject/Help/Html2/
+DocProject/Help/html/
+PublishScripts/
+*.pidb
+*.svclog
+*.scc
+_Chutzpah*
+ipch/
+*.aps
+*.ncb
+*.opendb
+*.opensdf
+*.sdf
+*.cachefile
+*.VC.db
+*.VC.VC.opendb
+*.psess
+*.vsp
+*.vspx
+*.sap
+*.e2e
+$tf/
+
+## -----------------------------------------------------------------------
+## JetBrains Rider
+## -----------------------------------------------------------------------
+
+.idea/
+*.sln.iml
+
+## -----------------------------------------------------------------------
+## VS Code
+## -----------------------------------------------------------------------
+
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+.history/
+*.vsix
+
+## -----------------------------------------------------------------------
+## Entity Framework / Database
+## -----------------------------------------------------------------------
+
+*.mdf
+*.ldf
+*.ndf
+
+## -----------------------------------------------------------------------
+## Testing
+## -----------------------------------------------------------------------
+
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+TestResult.xml
+*.trx
+*.coverage
+*.coveragexml
+[Cc]overage*/
+_NCrunch_*
+.*crunch*.local.xml
+nCrunchTemp_*
+*.mm.*
+AutoTest.Net/
+
+## -----------------------------------------------------------------------
+## Docker
+## -----------------------------------------------------------------------
+
+.docker/
+
+## -----------------------------------------------------------------------
+## Environment & Secrets
+## -----------------------------------------------------------------------
+
+.env
+.env.*
+!.env.example
+secrets.json
+appsettings.*.local.json
+appsettings.local.json
+**/appsettings.Production.json
+
+## -----------------------------------------------------------------------
+## OS generated files
+## -----------------------------------------------------------------------
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Linux
+*~
+
+## -----------------------------------------------------------------------
+## CI / CD
+## -----------------------------------------------------------------------
+
+.github/secrets/
+
+## -----------------------------------------------------------------------
+## Tools
+## -----------------------------------------------------------------------
+
+# Claude Code internal
+.claude/
+
+# SonarQube
+.sonarqube/
+.sonar/
+
+# Terraform (if used for infra)
+.terraform/
+*.tfstate
+*.tfstate.backup
