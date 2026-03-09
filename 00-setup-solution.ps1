@@ -210,7 +210,6 @@ $apiPkg = @(
     "Asp.Versioning.Mvc",
     "Asp.Versioning.Mvc.ApiExplorer",
     "Swashbuckle.AspNetCore",
-    "Microsoft.AspNetCore.Diagnostics.HealthChecks",
     "AspNetCore.HealthChecks.SqlServer"
 )
 foreach ($pkg in $apiPkg) {

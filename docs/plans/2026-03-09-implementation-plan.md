@@ -87,8 +87,8 @@
 - `Asp.Versioning.Mvc`
 - `Asp.Versioning.Mvc.ApiExplorer`
 - `Swashbuckle.AspNetCore`
-- `Microsoft.AspNetCore.Diagnostics.HealthChecks`
 - `AspNetCore.HealthChecks.SqlServer`
+- ~~`Microsoft.AspNetCore.Diagnostics.HealthChecks`~~ *(removed — deprecated legacy package; `AddHealthChecks()` / `MapHealthChecks()` are built into `Microsoft.AspNetCore.App` since .NET 6)*
 
 **Test packages installed:**
 - Domain.Tests: `FluentAssertions`
