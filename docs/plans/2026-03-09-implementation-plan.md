@@ -14,170 +14,94 @@
 
 ## Phase 1: Solution Scaffolding & Docker Setup
 
-### Task 1.1: Create Solution and Projects
-
-**Files:**
-- Create: `MiniHRM.sln`
-- Create: `src/MiniHRM.Domain/MiniHRM.Domain.csproj`
-- Create: `src/MiniHRM.Application/MiniHRM.Application.csproj`
-- Create: `src/MiniHRM.Infrastructure/MiniHRM.Infrastructure.csproj`
-- Create: `src/MiniHRM.API/MiniHRM.API.csproj`
-- Create: `tests/MiniHRM.Domain.Tests/MiniHRM.Domain.Tests.csproj`
-- Create: `tests/MiniHRM.Application.Tests/MiniHRM.Application.Tests.csproj`
-- Create: `tests/MiniHRM.API.Tests/MiniHRM.API.Tests.csproj`
-
-**Step 1: Create solution and source projects**
-
-```bash
-cd D:/Projects/mini-hrm
-
-# Create solution
-dotnet new sln -n MiniHRM
-
-# Create source projects
-dotnet new classlib -n MiniHRM.Domain -o src/MiniHRM.Domain --framework net10.0
-dotnet new classlib -n MiniHRM.Application -o src/MiniHRM.Application --framework net10.0
-dotnet new classlib -n MiniHRM.Infrastructure -o src/MiniHRM.Infrastructure --framework net10.0
-dotnet new webapi -n MiniHRM.API -o src/MiniHRM.API --framework net10.0 --use-controllers
-
-# Create test projects
-dotnet new xunit -n MiniHRM.Domain.Tests -o tests/MiniHRM.Domain.Tests --framework net10.0
-dotnet new xunit -n MiniHRM.Application.Tests -o tests/MiniHRM.Application.Tests --framework net10.0
-dotnet new xunit -n MiniHRM.API.Tests -o tests/MiniHRM.API.Tests --framework net10.0
-```
-
-**Step 2: Add all projects to solution**
-
-```bash
-dotnet sln MiniHRM.sln add src/MiniHRM.Domain/MiniHRM.Domain.csproj
-dotnet sln MiniHRM.sln add src/MiniHRM.Application/MiniHRM.Application.csproj
-dotnet sln MiniHRM.sln add src/MiniHRM.Infrastructure/MiniHRM.Infrastructure.csproj
-dotnet sln MiniHRM.sln add src/MiniHRM.API/MiniHRM.API.csproj
-dotnet sln MiniHRM.sln add tests/MiniHRM.Domain.Tests/MiniHRM.Domain.Tests.csproj
-dotnet sln MiniHRM.sln add tests/MiniHRM.Application.Tests/MiniHRM.Application.Tests.csproj
-dotnet sln MiniHRM.sln add tests/MiniHRM.API.Tests/MiniHRM.API.Tests.csproj
-```
-
-**Step 3: Add project references (enforce layer dependencies)**
-
-```bash
-# Application depends on Domain
-dotnet add src/MiniHRM.Application/MiniHRM.Application.csproj reference src/MiniHRM.Domain/MiniHRM.Domain.csproj
-
-# Infrastructure depends on Application + Domain
-dotnet add src/MiniHRM.Infrastructure/MiniHRM.Infrastructure.csproj reference src/MiniHRM.Application/MiniHRM.Application.csproj
-dotnet add src/MiniHRM.Infrastructure/MiniHRM.Infrastructure.csproj reference src/MiniHRM.Domain/MiniHRM.Domain.csproj
-
-# API depends on Application + Infrastructure
-dotnet add src/MiniHRM.API/MiniHRM.API.csproj reference src/MiniHRM.Application/MiniHRM.Application.csproj
-dotnet add src/MiniHRM.API/MiniHRM.API.csproj reference src/MiniHRM.Infrastructure/MiniHRM.Infrastructure.csproj
-
-# Test project references
-dotnet add tests/MiniHRM.Domain.Tests/MiniHRM.Domain.Tests.csproj reference src/MiniHRM.Domain/MiniHRM.Domain.csproj
-dotnet add tests/MiniHRM.Application.Tests/MiniHRM.Application.Tests.csproj reference src/MiniHRM.Application/MiniHRM.Application.csproj
-dotnet add tests/MiniHRM.Application.Tests/MiniHRM.Application.Tests.csproj reference src/MiniHRM.Domain/MiniHRM.Domain.csproj
-dotnet add tests/MiniHRM.API.Tests/MiniHRM.API.Tests.csproj reference src/MiniHRM.API/MiniHRM.API.csproj
-dotnet add tests/MiniHRM.API.Tests/MiniHRM.API.Tests.csproj reference src/MiniHRM.Infrastructure/MiniHRM.Infrastructure.csproj
-dotnet add tests/MiniHRM.API.Tests/MiniHRM.API.Tests.csproj reference src/MiniHRM.Application/MiniHRM.Application.csproj
-```
-
-**Step 4: Verify solution builds**
-
-```bash
-dotnet build MiniHRM.sln
-```
-
-Expected: Build succeeded.
-
-**Step 5: Remove default generated files**
-
-Delete `Class1.cs` from Domain, Application, Infrastructure. Delete default `WeatherForecast*` files from API. Delete `UnitTest1.cs` from all test projects.
-
-**Step 6: Commit**
-
-```bash
-git add -A
-git commit -m "chore: scaffold Clean Architecture solution with test projects"
-```
+**Progress:** Task 1.1 ✅ · Task 1.2 ✅ · Task 1.3 ⬜ · Task 1.4 ⬜
 
 ---
 
-### Task 1.2: Install NuGet Packages
+### Task 1.1: Create Solution and Projects ✅ DONE
 
-**Step 1: Domain packages (none — Domain has zero dependencies)**
+> Automated via `00-setup-solution.ps1`. Commit: `6bd6fcd chore: scaffold Clean Architecture solution with test projects`
 
-No packages needed. Domain layer stays clean.
+**⚠️ .NET 10 deviation:** `dotnet new sln` now creates `MiniHRM.slnx` (new XML format), not `MiniHRM.sln`. All `dotnet sln` and `dotnet build` commands must reference `MiniHRM.slnx`.
 
-**Step 2: Application packages**
+**Files created:**
+- `MiniHRM.slnx` *(not `.sln` — .NET 10 default)*
+- `src/MiniHRM.Domain/MiniHRM.Domain.csproj`
+- `src/MiniHRM.Application/MiniHRM.Application.csproj`
+- `src/MiniHRM.Infrastructure/MiniHRM.Infrastructure.csproj`
+- `src/MiniHRM.API/MiniHRM.API.csproj`
+- `tests/MiniHRM.Domain.Tests/MiniHRM.Domain.Tests.csproj`
+- `tests/MiniHRM.Application.Tests/MiniHRM.Application.Tests.csproj`
+- `tests/MiniHRM.API.Tests/MiniHRM.API.Tests.csproj`
 
-```bash
-cd D:/Projects/mini-hrm
-dotnet add src/MiniHRM.Application package MediatR
-dotnet add src/MiniHRM.Application package FluentValidation
-dotnet add src/MiniHRM.Application package FluentValidation.DependencyInjectionExtensions
-dotnet add src/MiniHRM.Application package Mapster
-dotnet add src/MiniHRM.Application package MapsterMapper
-dotnet add src/MiniHRM.Application package Microsoft.Extensions.Logging.Abstractions
-```
+**Project references (verified):**
+- Application → Domain
+- Infrastructure → Application, Domain
+- API → Application, Infrastructure
+- Domain.Tests → Domain
+- Application.Tests → Application, Domain
+- API.Tests → API, Infrastructure, Application
 
-**Step 3: Infrastructure packages**
+**Steps completed:**
+1. ✅ Created solution and all source/test projects
+2. ✅ Added all projects to `MiniHRM.slnx`
+3. ✅ Set up all project references (Clean Architecture dependency direction enforced)
+4. ✅ Removed boilerplate (`Class1.cs`, `WeatherForecast*`, `UnitTest1.cs`)
+5. ✅ Solution builds successfully
+6. ✅ Committed
 
-```bash
-dotnet add src/MiniHRM.Infrastructure package Microsoft.EntityFrameworkCore
-dotnet add src/MiniHRM.Infrastructure package Microsoft.EntityFrameworkCore.SqlServer
-dotnet add src/MiniHRM.Infrastructure package Microsoft.EntityFrameworkCore.Tools
-dotnet add src/MiniHRM.Infrastructure package Microsoft.AspNetCore.Identity.EntityFrameworkCore
-dotnet add src/MiniHRM.Infrastructure package Microsoft.AspNetCore.Authentication.JwtBearer
-dotnet add src/MiniHRM.Infrastructure package Microsoft.Extensions.Configuration.Abstractions
-```
+---
 
-**Step 4: API packages**
+### Task 1.2: Install NuGet Packages ✅ DONE
 
-```bash
-dotnet add src/MiniHRM.API package Serilog.AspNetCore
-dotnet add src/MiniHRM.API package Serilog.Sinks.Console
-dotnet add src/MiniHRM.API package Serilog.Sinks.File
-dotnet add src/MiniHRM.API package Serilog.Sinks.Seq
-dotnet add src/MiniHRM.API package Serilog.Enrichers.Environment
-dotnet add src/MiniHRM.API package Serilog.Enrichers.Process
-dotnet add src/MiniHRM.API package Serilog.Enrichers.Thread
-dotnet add src/MiniHRM.API package Asp.Versioning.Mvc
-dotnet add src/MiniHRM.API package Asp.Versioning.Mvc.ApiExplorer
-dotnet add src/MiniHRM.API package Swashbuckle.AspNetCore
-dotnet add src/MiniHRM.API package Microsoft.AspNetCore.Diagnostics.HealthChecks
-dotnet add src/MiniHRM.API package AspNetCore.HealthChecks.SqlServer
-```
+> Automated via `00-setup-solution.ps1`. Builds clean after all packages installed.
 
-**Step 5: Test packages**
+**⚠️ Package correction:** `MapsterMapper` does not exist on NuGet. Replaced with `Mapster.DependencyInjection`.
 
-```bash
-# Domain tests
-dotnet add tests/MiniHRM.Domain.Tests package FluentAssertions
+**Domain:** No packages (intentional — zero external dependencies).
 
-# Application tests
-dotnet add tests/MiniHRM.Application.Tests package FluentAssertions
-dotnet add tests/MiniHRM.Application.Tests package NSubstitute
-dotnet add tests/MiniHRM.Application.Tests package Bogus
+**Application packages installed:**
+- `MediatR`
+- `FluentValidation`
+- `FluentValidation.DependencyInjectionExtensions`
+- `Mapster`
+- `Mapster.DependencyInjection` *(replaces the incorrect `MapsterMapper`)*
+- `Microsoft.Extensions.Logging.Abstractions`
 
-# API integration tests
-dotnet add tests/MiniHRM.API.Tests package FluentAssertions
-dotnet add tests/MiniHRM.API.Tests package Microsoft.AspNetCore.Mvc.Testing
-dotnet add tests/MiniHRM.API.Tests package Testcontainers.MsSql
-dotnet add tests/MiniHRM.API.Tests package Bogus
-```
+**Infrastructure packages installed:**
+- `Microsoft.EntityFrameworkCore`
+- `Microsoft.EntityFrameworkCore.SqlServer`
+- `Microsoft.EntityFrameworkCore.Tools`
+- `Microsoft.AspNetCore.Identity.EntityFrameworkCore`
+- `Microsoft.AspNetCore.Authentication.JwtBearer`
+- `Microsoft.Extensions.Configuration.Abstractions`
 
-**Step 6: Verify build**
+**API packages installed:**
+- `Serilog.AspNetCore`
+- `Serilog.Sinks.Console`
+- `Serilog.Sinks.File`
+- `Serilog.Sinks.Seq`
+- `Serilog.Enrichers.Environment`
+- `Serilog.Enrichers.Process`
+- `Serilog.Enrichers.Thread`
+- `Asp.Versioning.Mvc`
+- `Asp.Versioning.Mvc.ApiExplorer`
+- `Swashbuckle.AspNetCore`
+- `Microsoft.AspNetCore.Diagnostics.HealthChecks`
+- `AspNetCore.HealthChecks.SqlServer`
 
-```bash
-dotnet build MiniHRM.sln
-```
+**Test packages installed:**
+- Domain.Tests: `FluentAssertions`
+- Application.Tests: `FluentAssertions`, `NSubstitute`, `Bogus`
+- API.Tests: `FluentAssertions`, `Microsoft.AspNetCore.Mvc.Testing`, `Testcontainers.MsSql`, `Bogus`
 
-**Step 7: Commit**
-
-```bash
-git add -A
-git commit -m "chore: install NuGet packages for all layers"
-```
+**Steps completed:**
+1. ✅ Application packages added
+2. ✅ Infrastructure packages added
+3. ✅ API packages added
+4. ✅ Test packages added
+5. ✅ Solution builds successfully
+6. ⬜ Commit pending
 
 ---
 
