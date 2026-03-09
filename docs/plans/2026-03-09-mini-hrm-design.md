@@ -63,7 +63,7 @@ MiniHRM/
 ├── docker-compose.yml
 ├── Dockerfile
 ├── .github/workflows/ci.yml
-└── MiniHRM.sln
+└── MiniHRM.slnx
 ```
 
 **Layer dependency rules (strict):**

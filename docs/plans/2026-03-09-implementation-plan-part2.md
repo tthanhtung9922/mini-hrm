@@ -425,7 +425,7 @@ services.AddScoped<IApplicationDbContext>(provider =>
 **Step 4: Build and verify**
 
 ```bash
-dotnet build MiniHRM.sln
+dotnet build MiniHRM.slnx
 ```
 
 **Step 5: Commit**
@@ -488,7 +488,7 @@ public static class DependencyInjection
 **Step 2: Build and verify**
 
 ```bash
-dotnet build MiniHRM.sln
+dotnet build MiniHRM.slnx
 ```
 
 **Step 3: Commit**
@@ -965,7 +965,7 @@ public class DeleteDepartmentCommandHandler : IRequestHandler<DeleteDepartmentCo
 **Step 5: Build and run tests**
 
 ```bash
-dotnet build MiniHRM.sln
+dotnet build MiniHRM.slnx
 dotnet test tests/MiniHRM.Application.Tests -v n
 ```
 
@@ -1652,7 +1652,7 @@ services.AddHttpContextAccessor();
 **Step 8: Build and verify**
 
 ```bash
-dotnet build MiniHRM.sln
+dotnet build MiniHRM.slnx
 ```
 
 **Step 9: Commit**
@@ -1929,7 +1929,7 @@ public static class HostExtensions
 **Step 5: Build and verify**
 
 ```bash
-dotnet build MiniHRM.sln
+dotnet build MiniHRM.slnx
 ```
 
 **Step 6: Commit**
@@ -2112,7 +2112,7 @@ public class EmployeesController : ApiController
 **Step 5: Build and verify**
 
 ```bash
-dotnet build MiniHRM.sln
+dotnet build MiniHRM.slnx
 ```
 
 **Step 6: Create initial EF Core migration**
@@ -2837,7 +2837,7 @@ jobs:
 **Step 2: Build and verify**
 
 ```bash
-dotnet build MiniHRM.sln
+dotnet build MiniHRM.slnx
 ```
 
 **Step 3: Commit**

@@ -2043,7 +2043,7 @@ public class AuditableEntityInterceptor : SaveChangesInterceptor
 **Step 3: Build and verify**
 
 ```bash
-dotnet build MiniHRM.sln
+dotnet build MiniHRM.slnx
 ```
 
 **Step 4: Commit**
@@ -2273,7 +2273,7 @@ public class UnitOfWork : IUnitOfWork
 **Step 3: Build and verify**
 
 ```bash
-dotnet build MiniHRM.sln
+dotnet build MiniHRM.slnx
 ```
 
 **Step 4: Commit**
@@ -2357,7 +2357,7 @@ public static class DependencyInjection
 **Step 3: Build and verify**
 
 ```bash
-dotnet build MiniHRM.sln
+dotnet build MiniHRM.slnx
 ```
 
 **Step 4: Commit**

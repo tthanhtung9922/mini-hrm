@@ -1,6 +1,6 @@
 @MiniHRM.API_HostAddress = http://localhost:5028
 
-GET {{MiniHRM.API_HostAddress}}/weatherforecast/
+GET {{MiniHRM.API_HostAddress}}/api/v1/departments
 Accept: application/json
 
 ###
